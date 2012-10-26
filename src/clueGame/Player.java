@@ -9,9 +9,9 @@ public abstract class Player {
 	private Set<Card> myCards;
 	private BoardCell visited;
 	
-	public Card disproveSuggestion(String person, String room, String weapon) {
+	public Card disproveSuggestion(String player, String room, String weapon) {
 		//TODO
-		return new Card();
+		return new Card(player, room, weapon);
 	}
 	public BoardCell pickLocation(HashSet<BoardCell> targets) {
 		// TODO Auto-generated method stub

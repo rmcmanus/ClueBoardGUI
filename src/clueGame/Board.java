@@ -310,7 +310,7 @@ public class Board {
 	public void deal() {
 		//TODO
 	}
-	public void deal(ArrayList<String> cardList) {
+	public void deal(ArrayList<Card> cardList) {
 		//TODO
 	}
 

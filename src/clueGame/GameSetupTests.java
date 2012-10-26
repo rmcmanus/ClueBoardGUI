@@ -16,7 +16,7 @@ public class GameSetupTests {
 	private static Card weaponCard, roomCard, playerCard;
 	private static ArrayList<Card> deck;
 	private static int weaponCounter, roomCounter, playerCounter;
-	private ArrayList<String> dealtCard;
+	private ArrayList<Card> dealtCard;
 	
 	@BeforeClass
 	public static void setBoardAndPlayer() {

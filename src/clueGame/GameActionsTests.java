@@ -1,23 +1,25 @@
 package clueGame;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import junit.framework.Assert;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import clueGame.Card.CardType;
-
 public class GameActionsTests {
 	
 	private static Board board;
+	
 	private static Player playerOne, computerPlayerOne, computerPlayerTwo;
-	private static Card weaponCard, roomCard, playerCard;
-	private static ArrayList<Card> deck;
-	private static int weaponCounter, roomCounter, playerCounter;
+	private static Card weaponCard, roomCard, playerCard, mustardCard, greenCard, knifeCard, leadPipeCard, kitchenCard, masterBedroomCard;
+	
+	private ArrayList<Card> deck;
 	private static Solution solution;
 	private ArrayList<String> dealtCard;
 	
@@ -32,23 +34,6 @@ public class GameActionsTests {
 		weaponCard = new Card();
 		roomCard = new Card();
 		playerCard = new Card();
-		
-		deck = new ArrayList<Card>();
-		
-		weaponCounter = 0;
-		roomCounter = 0;
-		playerCounter = 0;
-		for(int i = 0; i < deck.size(); i++) {
-			if(deck.get(i).getCardType() == CardType.WEAPON) {
-				weaponCounter++;
-			}
-			else if(deck.get(i).getCardType() == CardType.ROOM) {
-				roomCounter++;
-			}
-			else if(deck.get(i).getCardType() == CardType.PLAYER) {
-				playerCounter++;
-			}
-		}
 		
 		solution = new Solution("Taylor", "Kitchen", "Lead Pipe");
 	}
@@ -111,6 +96,31 @@ public class GameActionsTests {
 		assertTrue(loc_20_15Tot > 10);
 		assertTrue(loc_20_17Tot > 10);
 		assertTrue(loc_19_14Tot > 10);							
+	}
+	
+	@Test
+	public void testDisproveSuggestion() {
+		deck = new ArrayList<Card>();
+		
+		mustardCard = new Card("Colonel Mustard", Card.CardType.PLAYER);
+		deck.add(mustardCard);
+		greenCard = new Card("Mr Green", Card.CardType.PLAYER);
+		deck.add(mustardCard);
+		knifeCard = new Card("Knife", Card.CardType.WEAPON);
+		deck.add(mustardCard);
+		leadPipeCard = new Card("Lead Pipe", Card.CardType.WEAPON);
+		deck.add(mustardCard);
+		kitchenCard = new Card("Kitchen", Card.CardType.ROOM);
+		deck.add(mustardCard);
+		masterBedroomCard = new Card("Master Bedroom", Card.CardType.ROOM);
+		deck.add(mustardCard);
+		
+		board.deal(deck);
+		
+		Card temp = playerOne.disproveSuggestion("Colonel Mustard", "Kitchen", "Rope");
+		System.out.println(temp.getPlayer());
+		Assert.assertTrue(temp.getPlayer() == "Colonel Mustard");
+		
 	}
 	
 	@Test
