@@ -27,6 +27,8 @@ public class Board {
 	String [] tempRooms;
 	int tempRow = 0;
 	
+	String player = null, room = null, weapon = null;
+	
 	public Board() {
 		loadConfigFiles();
 		calcAdjacencies();
@@ -311,12 +313,12 @@ public class Board {
 	public void deal(ArrayList<String> cardList) {
 		//TODO
 	}
-	
+
 	public boolean checkAccusation(String person, String room, String weapon) {
 		//TODO
 		return false;
 	}
-	public void checkSuggestion(String person, String room, String weapon) {
+	public void handleSuggestion(String person, String room, String weapon) {
 		//TODO
 	}
 	

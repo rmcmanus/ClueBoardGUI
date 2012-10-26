@@ -1,5 +1,6 @@
 package clueGame;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class ComputerPlayer extends Player {
@@ -8,10 +9,6 @@ public class ComputerPlayer extends Player {
 	public ComputerPlayer() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-	
-	public void pickLocation(Set<BoardCell> targets) {
-		//TODO
 	}
 	
 	public void createSuggestion() {

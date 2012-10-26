@@ -15,11 +15,11 @@ public class GameSetupTests {
 	private static Player playerOne, computerPlayerOne, computerPlayerTwo;
 	private static Card weaponCard, roomCard, playerCard;
 	private static ArrayList<Card> deck;
-	private int weaponCounter, roomCounter, playerCounter;
+	private static int weaponCounter, roomCounter, playerCounter;
 	private ArrayList<String> dealtCard;
 	
 	@BeforeClass
-	public void setBoardAndPlayer() {
+	public static void setBoardAndPlayer() {
 		board = new Board();
 		
 		playerOne = new HumanPlayer();
