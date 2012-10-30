@@ -1,24 +1,26 @@
 package clueGame;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public abstract class Player {
 	private String name;
 	private String color;
-	private Set<Card> myCards;
+	private Set<Card> myCards = new HashSet<Card>();
 	private BoardCell visited;
+	public Object seenCards;
 	
 	public Card disproveSuggestion(String player, String room, String weapon) {
 		//TODO
 		return new Card(player, room, weapon);
 	}
 	public BoardCell pickLocation(HashSet<BoardCell> targets) {
-		// TODO Auto-generated method stub
+		
 		return new WalkwayCell();
 	}
-	public void createSuggestion() {
-		// TODO Auto-generated method stub
+	public void addCard(Card card) {
+		myCards.add(card);
 	}
 	
 	//GETTERS and SETTERS for testing only
@@ -46,5 +48,9 @@ public abstract class Player {
 	}
 	public String getColor() {
 		return color;
+	}
+	public ArrayList<Card> createSuggestion() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -1,0 +1,18 @@
+player
+Taylor
+player
+Borg Unit 1
+player
+Borg Unit 2
+weapon
+Lead Pipe
+weapon
+Nightstick
+weapon
+Taser
+room
+Kitchen
+room
+Ballroom
+room
+Library

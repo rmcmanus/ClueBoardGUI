@@ -8,8 +8,10 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
-import java.util.TreeSet;
+
+import clueGame.Card.CardType;
 
 public class Board {
 	
@@ -18,19 +20,29 @@ public class Board {
 	FileReader reader = null;
 	private ArrayList<BoardCell> cells = new ArrayList<BoardCell>();
 	private Map<Character, String> rooms = new HashMap<Character, String>();
+	
 	private int numRows;
 	private int numColumns;
+	
 	HashSet<Integer> visited = new HashSet<Integer>();
 	LinkedList<Integer> temp = new LinkedList<Integer>();
 	HashSet<BoardCell> targets = new HashSet<BoardCell>();
 	private Map<Integer, LinkedList<Integer>> adjMtx = new HashMap<Integer, LinkedList<Integer>>();
+	
 	String [] tempRooms;
 	int tempRow = 0;
 	
 	String player = null, room = null, weapon = null;
 	
+	//Player creation
+	ArrayList<Player> players = new ArrayList<Player>();
+	//Card creation
+	ArrayList<Card> cards = new ArrayList<Card>();
+	
 	public Board() {
 		loadConfigFiles();
+		loadPlayersFromFile();
+		loadCardsFromFile();
 		calcAdjacencies();
 	}
 	
@@ -303,15 +315,88 @@ public class Board {
 	//STUBS LAY BEYOND
 	////////////////////////////////
 	
+	public void loadPlayersFromFile() {
+		try {
+			FileReader playerReader = new FileReader("Player.txt");
+			Scanner playerIn = new Scanner(playerReader);
+			String humanName = playerIn.nextLine();
+			Player tempPlayer = new HumanPlayer();
+			tempPlayer.setName(humanName);
+			String humanColor = playerIn.nextLine();
+			tempPlayer.setColor(humanColor);
+			players.add(tempPlayer);
+			while(playerIn.hasNextLine()) {
+				String tempName = playerIn.nextLine();
+				tempPlayer = new ComputerPlayer();
+				tempPlayer.setName(tempName);
+				String tempColor = playerIn.nextLine();
+				tempPlayer.setColor(tempColor);
+				players.add(tempPlayer);
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	
+	public void loadCardsFromFile() {
+		try {
+			FileReader cardReader = new FileReader("Card.txt");
+			Scanner cardIn = new Scanner(cardReader);
+			while(cardIn.hasNextLine()) {
+				String cardType = cardIn.nextLine();
+				CardType tempType;
+				if(cardType.equals("player")) {
+					tempType = CardType.PLAYER;
+				}
+				else if(cardType.equals("weapon")) {
+					tempType = CardType.WEAPON;
+				}
+				else {
+					tempType = CardType.ROOM;
+				}
+				String cardName = cardIn.nextLine();
+				Card tempCard = new Card(cardName, tempType);
+				cards.add(tempCard);
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
 	public void selectAnswer() {
 		//TODO
 	}
 	
 	public void deal() {
-		//TODO
+		Random randInt = new Random();
+		ArrayList<Integer> seen = new ArrayList<Integer>();
+		while(seen.size() != cards.size()) {
+			int indexDealer = randInt.nextInt(cards.size());
+			if(!seen.contains(indexDealer)) {
+				for(int i = 0; i < players.size(); i++) {
+					CardType getType = cards.get(indexDealer).getCardType();
+					int goAhead = 0;
+					for(Card c: players.get(i).getMyCards()) {
+						if(c.getCardType() == getType) {
+							++goAhead;
+						}
+					}
+					if(goAhead == 0) {
+						players.get(i).addCard(cards.get(indexDealer));
+					}
+				}
+				seen.add(indexDealer);
+			}
+		}
+		
 	}
 	public void deal(ArrayList<Card> cardList) {
-		//TODO
+		
+	}
+	
+	public void makeAccusation() {
+		
 	}
 
 	public boolean checkAccusation(String person, String room, String weapon) {
@@ -326,4 +411,16 @@ public class Board {
 	//
 	//
 	////////////////////////////////
+	
+	public static void main(String[] args) {
+		Board board = new Board();
+		Player playerOne = board.players.get(0);
+		Player computerPlayerOne = board.players.get(1);
+		Player computerPlayerTwo = board.players.get(2);
+		//System.out.println(board.players.get(0).getName());
+		board.deal();
+		System.out.println(playerOne.getMyCards().size());
+		System.out.println(board.cards.size());
+	}
+
 }

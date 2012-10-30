@@ -125,7 +125,14 @@ public class GameActionsTests {
 	
 	@Test
 	public void testCreateSuggestion() {
-		computerPlayerOne.createSuggestion();
+		ArrayList<Card> testSuggestion = new ArrayList<Card>();
+		ArrayList<Card> computerSuggestion = computerPlayerOne.createSuggestion();
+		Assert.assertEquals( computerSuggestion, testSuggestion);
+		
+		for(Card c : computerSuggestion) {
+			Assert.assertFalse(((ArrayList<Card>) computerPlayerOne.seenCards).contains(c));
+		}
 	}
-
+	
+	
 }

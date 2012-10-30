@@ -14,35 +14,31 @@ public class GameSetupTests {
 	private static Board board;
 	private static Player playerOne, computerPlayerOne, computerPlayerTwo;
 	private static Card weaponCard, roomCard, playerCard;
-	private static ArrayList<Card> deck;
 	private static int weaponCounter, roomCounter, playerCounter;
-	private ArrayList<Card> dealtCard;
 	
 	@BeforeClass
 	public static void setBoardAndPlayer() {
 		board = new Board();
 		
-		playerOne = new HumanPlayer();
-		computerPlayerOne = new ComputerPlayer();
-		computerPlayerTwo = new ComputerPlayer();
+		playerOne = board.players.get(0);
+		computerPlayerOne = board.players.get(1);
+		computerPlayerTwo = board.players.get(2);
 		
-		weaponCard = new Card();
-		roomCard = new Card();
-		playerCard = new Card();
-		
-		deck = new ArrayList<Card>();
+		weaponCard = board.cards.get(3);
+		roomCard = board.cards.get(6);
+		playerCard = board.cards.get(0);
 		
 		weaponCounter = 0;
 		roomCounter = 0;
 		playerCounter = 0;
-		for(int i = 0; i < deck.size(); i++) {
-			if(deck.get(i).getCardType() == CardType.WEAPON) {
+		for(int i = 0; i < board.cards.size(); i++) {
+			if(board.cards.get(i).getCardType() == CardType.WEAPON) {
 				weaponCounter++;
 			}
-			else if(deck.get(i).getCardType() == CardType.ROOM) {
+			else if(board.cards.get(i).getCardType() == CardType.ROOM) {
 				roomCounter++;
 			}
-			else if(deck.get(i).getCardType() == CardType.PLAYER) {
+			else if(board.cards.get(i).getCardType() == CardType.PLAYER) {
 				playerCounter++;
 			}
 		}
@@ -51,21 +47,20 @@ public class GameSetupTests {
 	@Test
 	public void testLoadingPlayers() {
 		//Test human player input
-		Assert.assertTrue(playerOne.getName() == "Taylor");
-		Assert.assertTrue(playerOne.getName() == "Burgandy");
+		Assert.assertEquals(playerOne.getName(), "Taylor");
+		Assert.assertEquals(playerOne.getColor(), "Burgandy");
 		//Test loading first computer player
-		Assert.assertTrue(playerOne.getName() == "Borg Unit 1");
-		Assert.assertTrue(playerOne.getName() == "Orange");
+		Assert.assertEquals(computerPlayerOne.getName(), "Borg Unit 1");
+		Assert.assertEquals(computerPlayerOne.getColor(), "Orange");
 		//Test loading last computer player
-		Assert.assertTrue(playerOne.getName() == "Borg Unit 5");
-		Assert.assertTrue(playerOne.getName() == "Brown");
+		Assert.assertEquals(computerPlayerTwo.getName(), "Borg Unit 5");
+		Assert.assertEquals(computerPlayerTwo.getColor(), "Brown");
 	}
 	
 	@Test
 	public void testLoadingCards() {
-		
 		//Test size of deck
-		Assert.assertEquals(deck.size(), 9);
+		Assert.assertEquals(board.cards.size(), 9);
 		//Check deck for certain numbers of cards
 		Assert.assertEquals(weaponCounter, 3);
 		Assert.assertEquals(roomCounter, 3);
@@ -80,13 +75,17 @@ public class GameSetupTests {
 	
 	@Test
 	public void testDealCards() {
-		board.deal(dealtCard);
+		board.deal();
 		//Test all cards are dealt
-		Assert.assertEquals(dealtCard.size(), 9);
+		Assert.assertEquals(board.cards.size(), 9);
 		//Test players have same amount of cards
-		Assert.assertEquals(playerOne.getMyCards(), 3);
-		Assert.assertEquals(computerPlayerOne.getMyCards(), 3);
-		Assert.assertEquals(computerPlayerTwo.getMyCards(), 3);
+		System.out.println(playerOne.getMyCards().size());
+		System.out.println(computerPlayerOne.getMyCards().size());
+		System.out.println(computerPlayerTwo.getMyCards().size());
+		
+		Assert.assertEquals(playerOne.getMyCards().size(), 3);
+		Assert.assertEquals(computerPlayerOne.getMyCards().size(), 3);
+		Assert.assertEquals(computerPlayerTwo.getMyCards().size(), 3);
 		//Make sure players don't have multiple cards
 		//TODO Add more tests here when more players are added
 		if(computerPlayerOne.getMyCards().contains("Lead Pipe")) {
