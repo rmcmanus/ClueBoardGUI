@@ -24,21 +24,21 @@ public class GameSetupTests {
 		computerPlayerOne = board.players.get(1);
 		computerPlayerTwo = board.players.get(2);
 		
-		weaponCard = board.cards.get(3);
-		roomCard = board.cards.get(6);
-		playerCard = board.cards.get(0);
+		weaponCard = board.dealCards.get(3);
+		roomCard = board.dealCards.get(6);
+		playerCard = board.dealCards.get(0);
 		
 		weaponCounter = 0;
 		roomCounter = 0;
 		playerCounter = 0;
-		for(int i = 0; i < board.cards.size(); i++) {
-			if(board.cards.get(i).getCardType() == CardType.WEAPON) {
+		for(int i = 0; i < board.dealCards.size(); i++) {
+			if(board.dealCards.get(i).getCardType() == CardType.WEAPON) {
 				weaponCounter++;
 			}
-			else if(board.cards.get(i).getCardType() == CardType.ROOM) {
+			else if(board.dealCards.get(i).getCardType() == CardType.ROOM) {
 				roomCounter++;
 			}
-			else if(board.cards.get(i).getCardType() == CardType.PLAYER) {
+			else if(board.dealCards.get(i).getCardType() == CardType.PLAYER) {
 				playerCounter++;
 			}
 		}
@@ -60,7 +60,7 @@ public class GameSetupTests {
 	@Test
 	public void testLoadingCards() {
 		//Test size of deck
-		Assert.assertEquals(board.cards.size(), 9);
+		Assert.assertEquals(board.dealCards.size(), 9);
 		//Check deck for certain numbers of cards
 		Assert.assertEquals(weaponCounter, 3);
 		Assert.assertEquals(roomCounter, 3);
@@ -77,7 +77,7 @@ public class GameSetupTests {
 	public void testDealCards() {
 		board.deal();
 		//Test all cards are dealt
-		Assert.assertEquals(board.cards.size(), 9);
+		Assert.assertEquals(board.dealCards.size(), 9);
 		//Test players have same amount of cards
 		System.out.println(playerOne.getMyCards().size());
 		System.out.println(computerPlayerOne.getMyCards().size());

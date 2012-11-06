@@ -1,15 +1,25 @@
 player
-Taylor
+Miss Scarlet
 player
-Borg Unit 1
+Colonel Mustard
 player
-Borg Unit 2
+Mr Green
+player
+Mrs White
+player
+Mrs Peakcock
+player
+Professor Plum
+weapon
+Broom
 weapon
 Lead Pipe
 weapon
 Nightstick
 weapon
 Taser
+room
+Bedroom
 room
 Kitchen
 room
