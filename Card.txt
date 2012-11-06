@@ -1,0 +1,28 @@
+player
+Miss Scarlet
+player
+Colonel Mustard
+player
+Mr Green
+player
+Mrs White
+player
+Mrs Peakcock
+player
+Professor Plum
+weapon
+Broom
+weapon
+Lead Pipe
+weapon
+Nightstick
+weapon
+Taser
+room
+Bedroom
+room
+Kitchen
+room
+Ballroom
+room
+Library
