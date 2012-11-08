@@ -108,6 +108,7 @@ public class DetectiveNotes extends JDialog{
 		peopleCombo.addItem("Mrs White");
 		peopleCombo.addItem("Mrs Peacock");
 		peopleCombo.addItem("Professor Plum");
+		peopleCombo.addItem("Not Sure");
 		
 		return peopleCombo;
 	}
@@ -125,6 +126,7 @@ public class DetectiveNotes extends JDialog{
 		roomCombo.addItem("Study");
 		roomCombo.addItem("Library");
 		roomCombo.addItem("Billiard Room");
+		roomCombo.addItem("Not Sure");
 		
 		return roomCombo;
 	}
@@ -139,6 +141,7 @@ public class DetectiveNotes extends JDialog{
 		weaponCombo.addItem("Revolver");
 		weaponCombo.addItem("Rope");
 		weaponCombo.addItem("Wrench");
+		weaponCombo.addItem("Not Sure");
 		
 		return weaponCombo;
 	}

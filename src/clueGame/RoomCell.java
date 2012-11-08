@@ -1,5 +1,7 @@
 package clueGame;
 
+import java.awt.Graphics;
+
 public class RoomCell extends BoardCell{
 	
 	public enum DoorDirection {UP, DOWN, LEFT, RIGHT, NONE};
@@ -17,7 +19,8 @@ public class RoomCell extends BoardCell{
 			return true;
 	}
 	
-	public void draw(){
+	public void draw(Graphics g){
+		final int WIDTH = 1, HEIGHT = 1;
 		
 	}
 	

@@ -1,6 +1,10 @@
 package clueGame;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -23,7 +27,7 @@ import javax.swing.JMenuItem;
 
 import clueGame.Card.CardType;
 
-public class Board extends JFrame{
+public class Board extends JFrame {
 	
 	Scanner console = new Scanner(System.in);
 	Scanner in = null;
@@ -47,8 +51,9 @@ public class Board extends JFrame{
 	//Card creation
 	ArrayList<Card> dealCards = new ArrayList<Card>();
 	static ArrayList<Card> allCards = new ArrayList<Card>();
-	
+	//GUI creation
 	JDialog dialog;
+	private DrawPanel drawPanel;
 	
 	public Board() {
 		loadConfigFiles();
@@ -59,6 +64,9 @@ public class Board extends JFrame{
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		menuBar.add(createFileMenu());
+		
+		drawPanel = new DrawPanel(this);
+		add(drawPanel, BorderLayout.CENTER);
 		
 		setSize(new Dimension(800, 800));
 		setTitle("Clue Game");
@@ -484,6 +492,7 @@ public class Board extends JFrame{
 		item.addActionListener(new MenuItemListener());
 		return item;
 	}
+	
 	private JMenuItem createDetectiveNotes() {
 		JMenuItem detectiveNotes = new JMenuItem("Detective Notes");
 		class MenuItemListener implements ActionListener {
