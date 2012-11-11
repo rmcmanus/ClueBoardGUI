@@ -115,7 +115,7 @@ public class GameActionsTests {
 		masterBedroomCard = new Card("Master Bedroom", Card.CardType.ROOM);
 		deck.add(mustardCard);
 		
-		board.deal(deck);
+		//board.deal(deck);
 		
 		Card temp = playerOne.disproveSuggestion("Colonel Mustard", "Kitchen", "Rope");
 		Assert.assertTrue(temp.getPlayer() == "Colonel Mustard");

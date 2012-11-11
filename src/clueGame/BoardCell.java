@@ -19,8 +19,7 @@ public abstract class BoardCell {
 		return false;
 	}
 	
-	protected void draw(Graphics g) {
-		
+	protected void draw(Graphics g, Board board) {
 	}
 	
 	protected void setRow(int row){

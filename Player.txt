@@ -1,6 +1,18 @@
 Miss Scarlet
+red
+4
 Colonel Mustard
+orange
+19
 Mr Green
+green
+321
 Mrs White
-Mrs Peakcock
+white
+498
+Mrs Peacock
+blue
+490
 Professor Plum
+magenta
+276

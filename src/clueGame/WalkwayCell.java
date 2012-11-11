@@ -1,5 +1,6 @@
 package clueGame;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class WalkwayCell extends BoardCell {
@@ -8,7 +9,15 @@ public class WalkwayCell extends BoardCell {
 		return true;
 	}
 	
-	public void draw(Graphics g) {
-		g.drawRect((this.row*25), (this.col*25), 100, 100);
+	public void draw(Graphics g, Board board) {
+		int x = board.CELLSIZE * col;
+		int y = board.CELLSIZE * row;
+		
+		g.setColor(Color.yellow);
+		g.fillRect(x, y, board.CELLSIZE, board.CELLSIZE);
+		
+		g.setColor(Color.black);
+		g.drawRect(x, y, board.CELLSIZE, board.CELLSIZE);
+		
 	}
 }

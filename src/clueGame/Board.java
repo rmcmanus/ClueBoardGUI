@@ -1,14 +1,10 @@
 package clueGame;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,15 +15,11 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 import clueGame.Card.CardType;
 
-public class Board extends JFrame {
+public class Board extends JPanel {
 	
 	Scanner console = new Scanner(System.in);
 	Scanner in = null;
@@ -35,14 +27,13 @@ public class Board extends JFrame {
 	private ArrayList<BoardCell> cells = new ArrayList<BoardCell>();
 	public static Map<Character, String> rooms = new HashMap<Character, String>();
 	
-	private int numRows;
-	private int numColumns;
-	
 	HashSet<Integer> visited = new HashSet<Integer>();
 	LinkedList<Integer> temp = new LinkedList<Integer>();
 	HashSet<BoardCell> targets = new HashSet<BoardCell>();
 	private Map<Integer, LinkedList<Integer>> adjMtx = new HashMap<Integer, LinkedList<Integer>>();
 	
+	private int numRows;
+	private int numColumns;
 	String [] tempRooms;
 	int tempRow = 0;
 	
@@ -51,25 +42,14 @@ public class Board extends JFrame {
 	//Card creation
 	ArrayList<Card> dealCards = new ArrayList<Card>();
 	static ArrayList<Card> allCards = new ArrayList<Card>();
-	//GUI creation
-	JDialog dialog;
-	private DrawPanel drawPanel;
+	
+	public static final int CELLSIZE = 25;
 	
 	public Board() {
 		loadConfigFiles();
 		loadPlayersFromFile();
 		loadCardsFromFile();
 		calcAdjacencies();
-		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		menuBar.add(createFileMenu());
-		
-		drawPanel = new DrawPanel(this);
-		add(drawPanel, BorderLayout.CENTER);
-		
-		setSize(new Dimension(800, 800));
-		setTitle("Clue Game");
 	}
 	
 	public void calcAdjacencies() {
@@ -189,7 +169,6 @@ public class Board extends JFrame {
 	public LinkedList<Integer> getAdjList(Integer index) {
 		return adjMtx.get(index);
 	}
-	
 	
 	public void loadConfigFiles() {
 		tempRow = 0;
@@ -316,28 +295,29 @@ public class Board extends JFrame {
 		System.out.print(o);
 	}
 	
-	////////////////////////////////
-	//STUBLAND
-	//YE WHO ENTER BE WARNED
-	//STUBS LAY BEYOND
-	////////////////////////////////
-	
 	public void loadPlayersFromFile() {
 		try {
 			FileReader playerReader = new FileReader("Player.txt");
 			Scanner playerIn = new Scanner(playerReader);
+			
 			String humanName = playerIn.nextLine();
 			Player tempPlayer = new HumanPlayer();
 			tempPlayer.setName(humanName);
 			String humanColor = playerIn.nextLine();
 			tempPlayer.setColor(humanColor);
+			String humanLocation = playerIn.nextLine();
+			tempPlayer.setCurrentLocation(this.getCellAt(Integer.parseInt(humanLocation)));
 			players.add(tempPlayer);
+			
 			while(playerIn.hasNextLine()) {
 				String tempName = playerIn.nextLine();
 				tempPlayer = new ComputerPlayer();
 				tempPlayer.setName(tempName);
 				String tempColor = playerIn.nextLine();
 				tempPlayer.setColor(tempColor);
+				String computerLocation = playerIn.nextLine();
+				tempPlayer.setCurrentLocation(this.getCellAt(Integer.parseInt(computerLocation)));
+				
 				players.add(tempPlayer);
 			}
 		} catch (FileNotFoundException e) {
@@ -443,11 +423,11 @@ public class Board extends JFrame {
 		}
 		
 	}
-	public void deal(ArrayList<Card> cardList) {
+	
+	public void deal(ArrayList<Card> cardlist) {
 		
 	}
 	
-
 	public boolean checkAccusation(String person, String room, String weapon) {
 		if(person.equalsIgnoreCase(Solution.person) && weapon.equalsIgnoreCase(Solution.weapon) && room.equalsIgnoreCase(Solution.room)) {
 			return true;
@@ -456,6 +436,7 @@ public class Board extends JFrame {
 		}
 		
 	}
+	
 	public void handleSuggestion(Player currentPlayer, ArrayList<Card> suggestCards) {
 		for(Player p : players)
 			if(!p.getName().equals(currentPlayer.getName()))
@@ -466,55 +447,21 @@ public class Board extends JFrame {
 					}
 	}
 	
-	////////////////////////////////
-	//
-	//DRAW FUNCTIONS
-	//
-	////////////////////////////////
-	
-	private JMenu createFileMenu()
-	{
-		JMenu menu = new JMenu("File");
-		menu.add(createDetectiveNotes());
-		menu.add(createFileExitItem());
-		return menu;
-	}
-
-	private JMenuItem createFileExitItem()
-	{
-		JMenuItem item = new JMenuItem("Exit");
-		class MenuItemListener implements ActionListener {
-			public void actionPerformed(ActionEvent e)
-			{
-				System.exit(0);
-			}
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		for(BoardCell bc : this.getCells()) {
+			bc.draw(g, this);
 		}
-		item.addActionListener(new MenuItemListener());
-		return item;
-	}
-	
-	private JMenuItem createDetectiveNotes() {
-		JMenuItem detectiveNotes = new JMenuItem("Detective Notes");
-		class MenuItemListener implements ActionListener {
-			public void actionPerformed(ActionEvent e)
-			{
-				dialog = new DetectiveNotes();
-				dialog.setVisible(true);
-			}
+		for(Player p : this.players) {
+			p.draw(g);
 		}
-		detectiveNotes.addActionListener(new MenuItemListener());
-		return detectiveNotes;
-	}
-
-	public static void main(String[] args) {
-		Board board = new Board();
-		board.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		board.setVisible(true);
 	}
 	
-	////////////////////////////////
-	//
-	//
-	////////////////////////////////
+	public void translate(int dx, int dy) {
+		//x += dx;
+		//y += dy;
+		// Must include this to see changes
+		repaint();
+	}
 
 }

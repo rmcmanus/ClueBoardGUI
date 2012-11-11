@@ -1,6 +1,8 @@
 package clueGame;
 
-import java.lang.reflect.Array;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -37,6 +39,27 @@ public abstract class Player {
 	}
 	public void updateSeen(Card seen) {
 		seenCards.add(seen);
+	}
+	
+	public void draw(Graphics g) {
+		g.setColor(this.convertColor(this.color));
+		g.fillOval(currentLocation.col*Board.CELLSIZE, currentLocation.row*Board.CELLSIZE, Board.CELLSIZE, Board.CELLSIZE);
+	}
+	
+	public void setCurrentLocation(BoardCell currentLocation) {
+		this.currentLocation = currentLocation;
+	}
+	// Be sure to trim the color, we don't want spaces around the name
+	public Color convertColor(String strColor) {
+		Color color; 
+		try {     
+			// We can use reflection to convert the string to a color
+			Field field = Class.forName("java.awt.Color").getField(strColor.trim());     
+			color = (Color)field.get(null); } 
+		catch (Exception e) {  
+			color = null; // Not defined } 
+		}
+		return color;
 	}
 	
 	//GETTERS and SETTERS for testing only

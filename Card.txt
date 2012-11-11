@@ -7,7 +7,7 @@ Mr Green
 player
 Mrs White
 player
-Mrs Peakcock
+Mrs Peacock
 player
 Professor Plum
 weapon
@@ -18,6 +18,10 @@ weapon
 Nightstick
 weapon
 Taser
+weapon
+Rabies
+weapon
+Paperclip
 room
 Bedroom
 room
