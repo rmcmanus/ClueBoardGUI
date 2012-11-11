@@ -1,8 +1,12 @@
 package clueGame;
 
+<<<<<<< HEAD
 import java.awt.Color;
 import java.awt.Graphics;
 import java.lang.reflect.Field;
+=======
+import java.lang.reflect.Array;
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -41,6 +45,7 @@ public abstract class Player {
 		seenCards.add(seen);
 	}
 	
+<<<<<<< HEAD
 	public void draw(Graphics g) {
 		g.setColor(this.convertColor(this.color));
 		g.fillOval(currentLocation.col*Board.CELLSIZE, currentLocation.row*Board.CELLSIZE, Board.CELLSIZE, Board.CELLSIZE);
@@ -62,6 +67,8 @@ public abstract class Player {
 		return color;
 	}
 	
+=======
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 	//GETTERS and SETTERS for testing only
 	
 	public void setName(String name) {

@@ -7,7 +7,11 @@ Mr Green
 player
 Mrs White
 player
+<<<<<<< HEAD
 Mrs Peacock
+=======
+Mrs Peakcock
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 player
 Professor Plum
 weapon
@@ -18,10 +22,13 @@ weapon
 Nightstick
 weapon
 Taser
+<<<<<<< HEAD
 weapon
 Rabies
 weapon
 Paperclip
+=======
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 room
 Bedroom
 room

@@ -1,4 +1,5 @@
 Miss Scarlet
+<<<<<<< HEAD
 red
 4
 Colonel Mustard
@@ -16,3 +17,10 @@ blue
 Professor Plum
 magenta
 276
+=======
+Colonel Mustard
+Mr Green
+Mrs White
+Mrs Peakcock
+Professor Plum
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da

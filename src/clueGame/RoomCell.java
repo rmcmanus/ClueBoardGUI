@@ -1,5 +1,6 @@
 package clueGame;
 
+<<<<<<< HEAD
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -9,6 +10,13 @@ public class RoomCell extends BoardCell{
 	private DoorDirection doorDirection;
 	private char initial;
 	public final int DOOR_WIDTH = 5;
+=======
+public class RoomCell extends BoardCell{
+	
+	public enum DoorDirection {UP, DOWN, LEFT, RIGHT, NONE};
+	private DoorDirection doorDirection;
+	private char initial;
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 	
 	public boolean isRoom() {
 		return true;
@@ -21,6 +29,7 @@ public class RoomCell extends BoardCell{
 			return true;
 	}
 	
+<<<<<<< HEAD
 	public void draw(Graphics g, Board board){
 		int x = board.CELLSIZE * col;
 		int y = board.CELLSIZE * row;
@@ -48,6 +57,10 @@ public class RoomCell extends BoardCell{
 		default:
 			break;
 		}	
+=======
+	public void draw(){
+		
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 	}
 	
 	public DoorDirection getDoorDirection() {
@@ -71,8 +84,11 @@ public class RoomCell extends BoardCell{
 			doorDirection = DoorDirection.LEFT;
 		else if (dir == 'R')
 			doorDirection = DoorDirection.RIGHT;
+<<<<<<< HEAD
 		else if (dir == 'N')
 			doorDirection = DoorDirection.NAME;
+=======
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 		else
 			doorDirection = DoorDirection.NONE;
 	}

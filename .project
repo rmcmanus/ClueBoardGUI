@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>ClueBoardFinal</name>
+=======
+	<name>ClueBoardGUI</name>
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 	<comment></comment>
 	<projects>
 	</projects>

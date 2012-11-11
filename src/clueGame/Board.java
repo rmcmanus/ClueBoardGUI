@@ -1,10 +1,18 @@
 package clueGame;
 
+<<<<<<< HEAD
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Field;
+=======
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,11 +23,23 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+<<<<<<< HEAD
 import javax.swing.JPanel;
 
 import clueGame.Card.CardType;
 
 public class Board extends JPanel {
+=======
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+import clueGame.Card.CardType;
+
+public class Board extends JFrame{
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 	
 	Scanner console = new Scanner(System.in);
 	Scanner in = null;
@@ -27,13 +47,22 @@ public class Board extends JPanel {
 	private ArrayList<BoardCell> cells = new ArrayList<BoardCell>();
 	public static Map<Character, String> rooms = new HashMap<Character, String>();
 	
+<<<<<<< HEAD
+=======
+	private int numRows;
+	private int numColumns;
+	
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 	HashSet<Integer> visited = new HashSet<Integer>();
 	LinkedList<Integer> temp = new LinkedList<Integer>();
 	HashSet<BoardCell> targets = new HashSet<BoardCell>();
 	private Map<Integer, LinkedList<Integer>> adjMtx = new HashMap<Integer, LinkedList<Integer>>();
 	
+<<<<<<< HEAD
 	private int numRows;
 	private int numColumns;
+=======
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 	String [] tempRooms;
 	int tempRow = 0;
 	
@@ -43,13 +72,27 @@ public class Board extends JPanel {
 	ArrayList<Card> dealCards = new ArrayList<Card>();
 	static ArrayList<Card> allCards = new ArrayList<Card>();
 	
+<<<<<<< HEAD
 	public static final int CELLSIZE = 25;
+=======
+	JDialog dialog;
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 	
 	public Board() {
 		loadConfigFiles();
 		loadPlayersFromFile();
 		loadCardsFromFile();
 		calcAdjacencies();
+<<<<<<< HEAD
+=======
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		menuBar.add(createFileMenu());
+		
+		setSize(new Dimension(800, 800));
+		setTitle("Clue Game");
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 	}
 	
 	public void calcAdjacencies() {
@@ -170,6 +213,10 @@ public class Board extends JPanel {
 		return adjMtx.get(index);
 	}
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 	public void loadConfigFiles() {
 		tempRow = 0;
 		
@@ -295,29 +342,48 @@ public class Board extends JPanel {
 		System.out.print(o);
 	}
 	
+<<<<<<< HEAD
+=======
+	////////////////////////////////
+	//STUBLAND
+	//YE WHO ENTER BE WARNED
+	//STUBS LAY BEYOND
+	////////////////////////////////
+	
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 	public void loadPlayersFromFile() {
 		try {
 			FileReader playerReader = new FileReader("Player.txt");
 			Scanner playerIn = new Scanner(playerReader);
+<<<<<<< HEAD
 			
+=======
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 			String humanName = playerIn.nextLine();
 			Player tempPlayer = new HumanPlayer();
 			tempPlayer.setName(humanName);
 			String humanColor = playerIn.nextLine();
 			tempPlayer.setColor(humanColor);
+<<<<<<< HEAD
 			String humanLocation = playerIn.nextLine();
 			tempPlayer.setCurrentLocation(this.getCellAt(Integer.parseInt(humanLocation)));
 			players.add(tempPlayer);
 			
+=======
+			players.add(tempPlayer);
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 			while(playerIn.hasNextLine()) {
 				String tempName = playerIn.nextLine();
 				tempPlayer = new ComputerPlayer();
 				tempPlayer.setName(tempName);
 				String tempColor = playerIn.nextLine();
 				tempPlayer.setColor(tempColor);
+<<<<<<< HEAD
 				String computerLocation = playerIn.nextLine();
 				tempPlayer.setCurrentLocation(this.getCellAt(Integer.parseInt(computerLocation)));
 				
+=======
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 				players.add(tempPlayer);
 			}
 		} catch (FileNotFoundException e) {
@@ -423,11 +489,19 @@ public class Board extends JPanel {
 		}
 		
 	}
+<<<<<<< HEAD
 	
 	public void deal(ArrayList<Card> cardlist) {
 		
 	}
 	
+=======
+	public void deal(ArrayList<Card> cardList) {
+		
+	}
+	
+
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 	public boolean checkAccusation(String person, String room, String weapon) {
 		if(person.equalsIgnoreCase(Solution.person) && weapon.equalsIgnoreCase(Solution.weapon) && room.equalsIgnoreCase(Solution.room)) {
 			return true;
@@ -436,7 +510,10 @@ public class Board extends JPanel {
 		}
 		
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 	public void handleSuggestion(Player currentPlayer, ArrayList<Card> suggestCards) {
 		for(Player p : players)
 			if(!p.getName().equals(currentPlayer.getName()))
@@ -447,6 +524,7 @@ public class Board extends JPanel {
 					}
 	}
 	
+<<<<<<< HEAD
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		for(BoardCell bc : this.getCells()) {
@@ -463,5 +541,56 @@ public class Board extends JPanel {
 		// Must include this to see changes
 		repaint();
 	}
+=======
+	////////////////////////////////
+	//
+	//DRAW FUNCTIONS
+	//
+	////////////////////////////////
+	
+	private JMenu createFileMenu()
+	{
+		JMenu menu = new JMenu("File");
+		menu.add(createDetectiveNotes());
+		menu.add(createFileExitItem());
+		return menu;
+	}
+
+	private JMenuItem createFileExitItem()
+	{
+		JMenuItem item = new JMenuItem("Exit");
+		class MenuItemListener implements ActionListener {
+			public void actionPerformed(ActionEvent e)
+			{
+				System.exit(0);
+			}
+		}
+		item.addActionListener(new MenuItemListener());
+		return item;
+	}
+	private JMenuItem createDetectiveNotes() {
+		JMenuItem detectiveNotes = new JMenuItem("Detective Notes");
+		class MenuItemListener implements ActionListener {
+			public void actionPerformed(ActionEvent e)
+			{
+				dialog = new DetectiveNotes();
+				dialog.setVisible(true);
+			}
+		}
+		detectiveNotes.addActionListener(new MenuItemListener());
+		return detectiveNotes;
+	}
+
+	public static void main(String[] args) {
+		Board board = new Board();
+		board.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		board.setVisible(true);
+	}
+	
+	////////////////////////////////
+	//
+	//
+	////////////////////////////////
+>>>>>>> fdb94791ae4721272d4da829325aaf4e999b73da
 
 }
